@@ -1,0 +1,5 @@
+.vscode/
+*.o
+*.out
+24hr_*
+!24hr_*.cpp

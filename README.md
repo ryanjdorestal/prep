@@ -4,23 +4,35 @@ This workspace is for one locked target: become ready for Spring/Summer 2027 SWE
 
 School and GPA are the first constraint. The plan is intentionally small enough to pause during heavy academic weeks and resume without a catch-up spiral.
 
-## Do this today — Monday, 2026-08-31
+## Do this today — Tuesday, 2026-09-08
 
-Total cap: **3 hours 30 minutes**, including breaks. Do these in order.
+Total cap: **2 hours 30 minutes**, including breaks. Do these in order.
 
-### 1. Start the Python foundations course — 1 hour 45 minutes
+### 1. Start the Python foundations reset — 80 minutes
 
-Open [Harvard CS50P Lecture 0: Functions and Variables](https://www.youtube.com/watch?v=JP7ITIXGpHk). Watch the complete Lecture 0 and type every example yourself. Do not watch passively at 2× speed.
+Open [Harvard CS50P Week 0: Functions and Variables](https://cs50.harvard.edu/python/weeks/0/). Start from the beginning and type every example yourself. Do not watch passively at 2× speed. Stop when the 80-minute block ends; finishing the lecture today is not required.
 
-Today's topics are functions, variables, strings, integers/floats, parameters, return values, and reading error messages. This is the Python foundation course for the reset. It is about 16 hours total—not a random 24-hour marathon—and it will be spread across three weeks while you keep coding.
+Today's topics are functions, variables, strings, integers/floats, parameters, return values, and reading error messages. The lectures plus typed examples and selected problem-set work will provide more than 24 hours of active practice.
 
-### 2. Open the systems textbook — 40 minutes
+### 2. Complete one foundations check — 30 minutes
+
+Open `python_prep/foundations/day_001_functions_variables.py`.
+
+- Work only in `make_receipt`.
+- Use Python syntax only: a colon after `def`, indentation for the function body, and no braces or semicolons.
+- Work from memory for 15 minutes before scrolling to the reference.
+- Run your attempt with `python3 python_prep/foundations/day_001_functions_variables.py`.
+- After the attempt, run the reference with `python3 python_prep/foundations/day_001_functions_variables.py --reference`.
+
+This is a syntax-and-functions exercise, not LeetCode.
+
+### 3. Open the systems textbook — 30 minutes
 
 Get this exact edition:
 
 > Randal E. Bryant and David R. O’Hallaron, *Computer Systems: A Programmer’s Perspective*, Third Edition, ISBN 978-0-13-409266-9.
 
-Read **printed pages 1–13**, from the start of Chapter 1 through the end of Section 1.5, **“Caches Matter.”** If the PDF viewer's page counter is offset by the front matter, follow the printed page number on the page, not the viewer counter.
+Read **printed pages 1–13**, from the start of Chapter 1 through the end of Section 1.5, **“Caches Matter.”** If the PDF viewer's page counter is offset by the front matter, follow the printed page number on the page, not the viewer counter. If schoolwork is heavy, stop after page 7 and finish pages 8–13 this weekend.
 
 Stop at page 13. In a note, answer:
 
@@ -28,42 +40,24 @@ Stop at page 13. In a note, answer:
 2. Why is moving data often more expensive than arithmetic?
 3. What problem does a cache solve?
 
-### 3. Attempt the Day 1 Python file — 45 minutes
+### 4. Write a two-sentence log — 10 minutes
 
-Open `python_prep/leetcode/day_001_practice_summary.py`.
+At the bottom of today's file, note what Python syntax you confused with C/C++ and how Python expresses it. Do not attempt `valid_parentheses.py` today.
 
-- Work only in `summarize_scores`.
-- Do not use AI, NumPy, pandas, `sum`, or `max` on the first attempt.
-- Stop after 25 unaided minutes even if stuck; write the exact sticking point.
-- Use the remaining time to debug and run the checks.
-- The reference solution is separated at the bottom. Do not scroll to it until the timer ends.
-
-Run your attempt with:
-
-```bash
-python3 python_prep/leetcode/day_001_practice_summary.py
-```
-
-Run the supplied reference only after your attempt:
-
-```bash
-python3 python_prep/leetcode/day_001_practice_summary.py --reference
-```
-
-### 4. Commit only the intended files — 20 minutes
+### 5. Commit only the intended files — 20 minutes
 
 This folder is connected to [`ryanjdorestal/prep`](https://github.com/ryanjdorestal/prep) on branch `main`.
 
-Do **not** use `git add .` today: the repository also contains an untracked screenshot and the old unfinished `valid_parentheses.py`.
+Do **not** use `git add .` today: the repository also contains an untracked screenshot, a Python cache directory, and the old unfinished `valid_parentheses.py`.
 
 After filling in your Day 1 function:
 
 ```bash
 cd /Users/ryandorestal/Desktop/prep
 git status
-git add README.md notes/BOOK_PLAN.md notes/DAILY_ROADMAP_2026-08-31_TO_2027-08-31.md python_prep/leetcode/day_001_practice_summary.py
+git add README.md notes/BOOK_PLAN.md notes/DAILY_ROADMAP_2026-08-31_TO_2027-08-31.md python_prep/foundations/day_001_functions_variables.py
 git diff --cached
-git commit -m "Add technical prep roadmap and day 1 Python practice"
+git commit -m "Add prep roadmap and begin Python foundations reset"
 git push origin main
 ```
 
@@ -71,17 +65,29 @@ Reading the cached diff before committing is mandatory. It confirms that your so
 
 ## Foundation-course decision
 
-Do **not** postpone coding until you have watched 48 hours of video.
+The Python and C++ resets are sequential, not simultaneous. This prevents the exact syntax collision visible in the first attempts.
 
-- **Python:** use [CS50's Introduction to Programming with Python](https://cs50.harvard.edu/python/) as the full reset. Complete Lectures 0–5 over the first three weeks, including small exercises. Lectures 6–9 can follow as needed. Through 2026-09-20, these lectures and exercises **replace** the roadmap's Python interview blocks; they are not added on top.
-- **C++:** starting Saturday 2026-09-05, use freeCodeCamp's [C++ Programming Course: Beginner to Advanced](https://www.youtube.com/watch?v=8jLOx1hD3_o). It is about 31 hours. During Fall, cover Chapters 2–12—basics through functions/returns—while compiling the examples. Skip the long environment-setup chapter except the macOS segment you actually need. Each course block replaces the roadmap's C++ block. Classes, ownership, and polymorphism come only after the fundamentals are stable.
+- **Python first:** use [CS50's Introduction to Programming with Python](https://cs50.harvard.edu/python/) as the full reset. Complete Weeks 0–9 with typed examples and selected exercises. Until the Python gate below is passed, the course replaces every roadmap LeetCode and language block.
+- **Then C++:** after the Python gate, use freeCodeCamp's [C++ Programming Course: Beginner to Advanced](https://www.youtube.com/watch?v=8jLOx1hD3_o). Cover the basics through functions first while compiling every example. Python interview practice may resume at that point, but C++ LeetCode waits until the C++ basics gate is passed.
 - Every 45–60 minutes of video must produce a small file, test, explanation, or corrected bug. Video time without output does not count.
+
+### Python gate before LeetCode
+
+From a blank file, without AI or a reference, you must be able to:
+
+1. define and call a function with parameters and a return value;
+2. use `if`/`elif`/`else`, `for`, and `while` with valid indentation;
+3. build and update a list and dictionary;
+4. read a traceback and correct ordinary syntax/type errors;
+5. write several `assert` checks and pass them.
+
+Only then return to the unfinished summary and Valid Parentheses files. You do not need to complete C++ before resuming **Python** interview questions.
 
 ## NumPy and pandas decision
 
 - **Today:** no NumPy and no pandas.
-- **First 14 days:** core Python only—functions, conditionals, loops, strings, lists, dictionaries, exceptions, and tests.
-- **Starting 2026-09-22:** do a selected **30 NumPy exercises**, three per week. Focus on array creation, shape, dtype, indexing, boolean masks, broadcasting, reductions, and vectorization.
+- **Until the Python gate is passed:** core Python only—functions, conditionals, loops, strings, lists, dictionaries, exceptions, and tests.
+- **After the gate:** do a selected **30 NumPy exercises**, three per week. Focus on array creation, shape, dtype, indexing, boolean masks, broadcasting, reductions, and vectorization.
 - **Pandas:** do not grind “100 pandas exercises” now. Begin 15–20 targeted pandas/data-cleaning tasks with the Spring ML book. Pandas is useful, but it is not a priority for SWE interviews and it should not displace Python reasoning or NumPy.
 
 The answer is therefore: **yes to a selected NumPy practice set after the Python reset; no to 100 NumPy plus 100 pandas exercises right now.**
