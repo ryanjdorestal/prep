@@ -19,10 +19,9 @@ int in = 0;
 // next slot to empty (Consumer)
 int out = 0;  
 
-// This is the fix: Theres one flag per slot,
-//and the producer only sets it, the consumer only clears it.
-//volatile used for re-check for wait
-volatile bool* slot_full = nullptr;
+// shared counter of items  in the buffer.
+// the threads changing it is the data race 
+int count = 0;
 
 void* producer(void* param) {
     const int counterLimit = *(int*)param;
@@ -31,21 +30,19 @@ void* producer(void* param) {
        
         const int next_produced = std::rand() % 100;
 
-        if (slot_full[in]) {
+        if (count == bufferSize) {
             std::printf("Producer: buffer is full (%d of %d slots used), waiting on consumer\n",
                         bufferSize, bufferSize);
         }
-        while (slot_full[in])
+        while (count == bufferSize)
            ; 
 
         buffer[in] = next_produced;
         std::printf("[P #%d] produced %d -> slot %d\n", counter + 1, next_produced, in);
 
-        // Mark the slot full only after the value is written and printed, so
-        // the consumer can never read it early and the log stays in order.
-        slot_full[in] = true;
-
         in = (in + 1) % bufferSize;
+
+        count++;
     }
     return nullptr;
 }
@@ -54,17 +51,16 @@ void* consumer(void* param) {
     const int counterLimit = *(int*)param;
 
     for (int counter = 0; counter < counterLimit; ++counter) {
-        while (!slot_full[out])
+        while (count == 0)
             ;  // nothing to consume, so do nothing 
 
         const int next_consumed = buffer[out];
         std::printf("\t\t\t\tConsumer: took %2d from slot %d\n", next_consumed, out);
 
-        // Marking the slot empty only after the value is read, so the producer
-        // doesnt overwrite an item that hasn't been consumed yet.
-        slot_full[out] = false;
 
         out = (out + 1) % bufferSize;
+
+        count--;
     }
     return nullptr;
 }
@@ -83,7 +79,6 @@ int main(int argc, char* argv[]) {
     if (bufferSize <= 0 || counterLimit <= 0) { fprintf(stderr, "Both numbers must be positive\n"); return -1; }
 
     buffer = new int[bufferSize];
-    slot_full = new volatile bool[bufferSize]();  // () starts every slot as empty
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 
     std::printf("Buffer size: %d, counter limit: %d\n\n", bufferSize, counterLimit);
@@ -105,6 +100,5 @@ int main(int argc, char* argv[]) {
     std::printf("\nBoth threads joined: %d items have been produced and consumed.\n", counterLimit);
 
     delete[] buffer;
-    delete[] slot_full;
     return EXIT_SUCCESS;
 }
