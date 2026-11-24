@@ -23,8 +23,8 @@
 // defintion of the function that moves the switch case forward 
 std::string switch_case_inc() {
     
-    int pc;
-    switch(pc);
+    int pc = 7;
+    std::cout << "local pc value: " << pc  << "\n";
 
 }
 
@@ -43,11 +43,15 @@ int main() {
     std::cout << "Reading step " << pc << "\n";
     break;
  }
+
+ switch(pc);
  
  std::cout << "saved pc value: " << pc << "\n";
 
  switch_case_inc();
 
+ std::cout << "new saved local pc value: " << pc << "\n";
+ 
  return 0;
 
 }
