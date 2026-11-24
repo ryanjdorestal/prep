@@ -46,6 +46,8 @@ int main() {
  
  std::cout << "saved pc value: " << pc << "\n";
 
+ switch_case_inc();
+
  return 0;
 
 }
